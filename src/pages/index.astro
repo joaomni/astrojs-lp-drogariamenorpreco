@@ -27,19 +27,21 @@ import Post3 from '../components/post3.astro'
 				<!-- <a href="https://www.babybeefjardim.com.br" target="_blank"  class="text-[#e0f1ff] text-sm font-medium flex items-center gap-1 cursor-pointer hover:underline"><SvgLink width='14' height='14' />babybeefjardim.com.br</a> -->
 			</h2>
 
-			<info-div class='flex flex-col items-center justify-center gap-2 text-sm'>
+			<info-div class='flex flex-col items-center justify-center gap-2 text-base'>
 				<TimeComponent />
 
 				<a
 					target='_blank'
 					href='https://www.google.com/maps/place/Drogaria+Menor+Pre%C3%A7o/@-15.823864,-48.0421903,16z/data=!4m15!1m8!3m7!1s0x935a331cf3c86a69:0x1e4d0cb9edd281c5!2sCol%C3%B4nia+Agr%C3%ADcola+Samambaia+-+Taguatinga,+Bras%C3%ADlia+-+DF!3b1!8m2!3d-15.8229101!4d-48.0444172!16s%2Fg%2F1q5gj1mxx!3m5!1s0x935a33f2a680b1f3:0xa9e50389df31226!8m2!3d-15.823361!4d-48.0369129!16s%2Fg%2F11h396l440?entry=ttu&g_ep=EgoyMDI1MDQyOS4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D'
-					class='flex items-center gap-1'
+					class='flex items-start gap-1'
 				>
 					<span><SvgPin fill='white' width='20' height='20' /></span>
-					<span class='sm:text-sm text-xs'
-						>Colônia Agrícola Samambaia CH 131 LOTE 2A LOJA 4 - Taguatinga,
-						Brasília - DF</span
-					>
+					<div class="flex flex-col">
+						<span class='text-sm'
+							>Colônia Agrícola Samambaia CH 131 LOTE 2A LOJA 4</span
+						>
+						<span>Taguatinga, Brasília - DF</span>
+					</div>
 				</a>
 			</info-div>
 
@@ -65,7 +67,7 @@ import Post3 from '../components/post3.astro'
 				href='https://api.whatsapp.com/send?phone=556133518138&text=Ol%C3%A1!%20Vi%20seu%20an%C3%BAncio%20e%20gostaria%20de%20fazer%20um%20pedido.'
 				target='_blank'
 			>
-				<span class='text-base font-normal'>Fale conosco</span>
+				<span class='text-xl font-normal'>Fale conosco</span>
 			</a>
 		</main>
 	</div>
@@ -91,7 +93,7 @@ import Post3 from '../components/post3.astro'
 	</aside>
 
 	<footer
-		class='flex flex-col gap-4 justify-center items-center text-xs text-gray-300 text-center w-[700px] mx-auto px-2 mb-8'
+		class='flex flex-col gap-4 justify-center items-center text-sm text-gray-300 text-center w-[700px] mx-auto px-2 mb-8'
 	>
 		<div class='flex sm:flex-row flex-col gap-5 items-center justify-center'>
 			<a
