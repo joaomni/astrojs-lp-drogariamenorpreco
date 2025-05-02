@@ -1,0 +1,89 @@
+---
+import SvgTime from './SvgTime.astro'
+---
+
+<div class='flex items-center gap-2'>
+	<span><SvgTime width='18' height='18' fill='white' /></span>
+	<div id='status-container'></div>
+</div>
+
+<script>
+	// Current date and time
+	const now = new Date()
+	const day = now.getDay() // 0: Sunday, 1: Monday, ..., 6: Saturday
+	const hour = now.getHours()
+	const minute = now.getMinutes()
+
+	// Helper function to check if current time is within the provided range
+	function isWithinTimeRange(startHour, startMinute, endHour, endMinute) {
+		const startTime = startHour * 60 + startMinute
+		const endTime = (endHour >= 24 ? endHour - 24 : endHour) * 60 + endMinute
+		const currentTime = hour * 60 + minute
+
+		if (endHour >= 24) {
+			return currentTime >= startTime || currentTime <= endTime
+		} else {
+			return currentTime >= startTime && currentTime <= endTime
+		}
+	}
+
+	// Define operating hours for each day
+	const operatingHours = {
+		0: [{ start: [8, 0], end: [22, 0] }], // Sunday
+		1: [{ start: [8, 0], end: [22, 0] }], // Monday
+		2: [{ start: [8, 0], end: [22, 0] }], // Tuesday
+		3: [{ start: [8, 0], end: [22, 0] }], // Wednesday
+		4: [{ start: [8, 0], end: [22, 0] }], // Thursday
+		5: [{ start: [8, 0], end: [22, 0] }], // Friday
+		6: [{ start: [8, 0], end: [22, 0] }], // Saturday
+	}
+
+	// Check if current time is within operating hours
+	const todayOperatingHours = operatingHours[day] || []
+	let openStatus = false
+
+	for (const period of todayOperatingHours) {
+		if (
+			isWithinTimeRange(
+				period.start[0],
+				period.start[1],
+				period.end[0],
+				period.end[1]
+			)
+		) {
+			openStatus = true
+			break
+		}
+	}
+
+	// Helper function to format time
+	function formatTime(hour, minute) {
+		const formattedHour = (hour >= 24 ? hour - 24 : hour)
+			.toString()
+			.padStart(2, '0')
+		const formattedMinute = minute.toString().padStart(2, '0')
+		return `${formattedHour}:${formattedMinute}`
+	}
+
+	const firstOpening =
+		todayOperatingHours.length > 0
+			? formatTime(
+					todayOperatingHours[0].start[0],
+					todayOperatingHours[0].start[1]
+				)
+			: ''
+
+	const lastClosing =
+		todayOperatingHours.length > 0
+			? formatTime(
+					todayOperatingHours[todayOperatingHours.length - 1].end[0],
+					todayOperatingHours[todayOperatingHours.length - 1].end[1]
+				)
+			: ''
+
+	const openText = openStatus ? 'Aberto' : 'Fechado'
+
+	// Update the HTML content
+	const statusContainer = document.getElementById('status-container')
+	statusContainer.innerHTML = `<span class="font-bold">${openText} agora</span> ${firstOpening} - ${lastClosing}`
+</script>
