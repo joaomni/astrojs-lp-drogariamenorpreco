@@ -1,0 +1,72 @@
+---
+import SvgTime from './SvgTime.astro'
+---
+
+<div class='bg-white relative'>
+	<div
+		id='countdown'
+		class='h-10 bg-red-700 text-white text-center font-bold py-2 transition-all duration-1000 ease-linear'
+		style='width: 100%'
+	>
+		<div class='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center gap-2'>
+			<SvgTime width='18' height='18' fill='white' /> Promoção acaba em: <span
+				id='timer'>--:--:--</span
+			>
+		</div>
+	</div>
+</div>
+
+<script>
+	function updateTimer() {
+		const now = new Date()
+		const deadline = new Date()
+		deadline.setHours(22, 0, 0, 0)
+
+		let diff = deadline.getTime() - now.getTime()
+		if (diff < 0) diff = 0
+
+		const hours = String(Math.floor(diff / (1000 * 60 * 60))).padStart(2, '0')
+		const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(
+			2,
+			'0'
+		)
+		const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0')
+
+		const timerEl = document.getElementById('timer')
+		if (timerEl) {
+			timerEl.textContent = `${hours}:${minutes}:${seconds}`
+		}
+	}
+
+	setInterval(updateTimer, 1000)
+	updateTimer()
+
+	const timer = document.getElementById('timer')
+	const countdown = document.getElementById('countdown')
+
+	if (timer && countdown) {
+		const duration = 5 * 60
+		let secondsLeft = duration
+
+		const formatTime = (secs: number) => {
+			const m = String(Math.floor(secs / 60)).padStart(2, '0')
+			const s = String(secs % 60).padStart(2, '0')
+			const h = String(Math.floor(secs / 3600)).padStart(2, '0')
+			return `${h}:${m}:${s}`
+		}
+
+		countdown.style.transformOrigin = 'left'
+
+		const interval = setInterval(() => {
+			secondsLeft--
+			timer.textContent = formatTime(secondsLeft)
+			const percent = (secondsLeft / duration) * 100
+			countdown.style.width = `${percent}%`
+
+			if (secondsLeft <= 0) {
+				clearInterval(interval)
+				timer.textContent = '00:00:00'
+			}
+		}, 1000)
+	}
+</script>

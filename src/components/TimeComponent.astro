@@ -2,7 +2,7 @@
 import SvgTime from './SvgTime.astro'
 ---
 
-<div class='flex items-center gap-2'>
+<div class='flex items-center gap-2 text-lg'>
 	<span><SvgTime width='18' height='18' fill='white' /></span>
 	<div id='status-container'></div>
 </div>
@@ -85,5 +85,10 @@ import SvgTime from './SvgTime.astro'
 
 	// Update the HTML content
 	const statusContainer = document.getElementById('status-container')
-	statusContainer.innerHTML = `<span class="font-bold">${openText} agora</span> ${firstOpening} - ${lastClosing}`
+
+	if (statusContainer) {
+		statusContainer.innerHTML = `<span class="font-bold">${openText} agora</span> ${firstOpening} - ${lastClosing}`
+	} else {
+		console.warn('Elemento com id "status-container" não encontrado.')
+	}
 </script>

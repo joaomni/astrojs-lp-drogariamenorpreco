@@ -7,11 +7,15 @@ import SvgPin from '../components/SvgPin.astro'
 import Post1 from '../components/post1.astro'
 import Post2 from '../components/post2.astro'
 import Post3 from '../components/post3.astro'
+import TimerCountdown from '../components/TimerCountdown.astro'
+import ScrollButton from '../components/ScrollButton.astro'
 ---
 
 <Layout title='Drogaria Menor Preço - Preço Baixo Todo Dia!'>
-	<div class='w-[580px] my-0 mx-auto text-center pt-16 pb-8 px-4'>
-		<header class='flex flex-col items-center gap-2'>
+	<TimerCountdown />
+
+	<div class='w-[580px] my-0 mx-auto text-center pt-16 pb-8 px-6'>
+		<header class='flex flex-col items-center gap-4'>
 			<img
 				class='bg-white mb-4 rounded-full w-[96px] h-[96px] object-contain p-1'
 				src='./assets/logo.jpg'
@@ -19,15 +23,23 @@ import Post3 from '../components/post3.astro'
 				height='96px'
 				alt='Logo Baby Beef Jardim'
 			/>
-			<h1 class='font-bold text-xl'>Drograria Menor Preço</h1>
-			<h2
-				class='text-base font-normal w-[400px] mb-4 flex flex-col items-center'
-			>
-				<p>Entrega grátis com pedidos mínimos de R$ 25,00.</p>
-				<!-- <a href="https://www.babybeefjardim.com.br" target="_blank"  class="text-[#e0f1ff] text-sm font-medium flex items-center gap-1 cursor-pointer hover:underline"><SvgLink width='14' height='14' />babybeefjardim.com.br</a> -->
+			<h1 class='font-bold text-2xl'>Drograria Menor Preço</h1>
+			<h2 class='font-medium text-xs mt-[-16px]'>
+				Há 6 anos cuidando da sua saúde em Taguatinga
 			</h2>
+			<h3
+				class='text-base font-normal w-[500px] mt-2 mb-3 leading-[22px] flex flex-col items-center'
+			>
+				<p>
+					Peça agora e receba em casa! <br class='md:hidden flex' />Entrega
+					gratuita a partir de R$ 25,00
+				</p>
+				<!-- <a href="https://www.babybeefjardim.com.br" target="_blank"  class="text-[#e0f1ff] text-sm font-medium flex items-center gap-1 cursor-pointer hover:underline"><SvgLink width='14' height='14' />babybeefjardim.com.br</a> -->
+			</h3>
 
-			<info-div class='flex flex-col items-center justify-center gap-2 text-base'>
+			<info-div
+				class='flex flex-col items-center justify-center gap-3 text-base'
+			>
 				<TimeComponent />
 
 				<a
@@ -36,10 +48,9 @@ import Post3 from '../components/post3.astro'
 					class='flex items-start gap-1'
 				>
 					<span><SvgPin fill='white' width='20' height='20' /></span>
-					<div class="flex flex-col">
-						<span class='text-sm'
-							>Colônia Agrícola Samambaia CH 131 LOTE 2A LOJA 4</span
-						>
+					<div class='flex flex-col text-sm leading-[18px]'>
+						<span>Colônia Agrícola Samambaia</span>
+						<span>CH 131 LOTE 2A LOJA 4</span>
 						<span>Taguatinga, Brasília - DF</span>
 					</div>
 				</a>
@@ -61,20 +72,24 @@ import Post3 from '../components/post3.astro'
 
 		<main class='mt-8'>
 			<a
+				id='scrollButton'
 				data-btn-whats
 				id='btnWhatsapp'
-				class='flex items-center justify-center rounded-[30px] w-full h-auto min-h-16 px-11 bg-[#E91B25] text-white border-2 border-solid border-[#E91B25] transition hover:bg-transparent hover:text-white'
+				class='scroll-button flex items-center justify-center rounded-[30px] w-full h-auto min-h-16 px-11 bg-[#E91B25] text-white border-2 border-solid border-[#E91B25] transition hover:bg-transparent hover:text-white'
 				href='https://api.whatsapp.com/send?phone=556133518138&text=Ol%C3%A1!%20Vi%20seu%20an%C3%BAncio%20e%20gostaria%20de%20fazer%20um%20pedido.'
 				target='_blank'
 			>
-				<span class='text-xl font-normal'>Fale conosco</span>
+				<span class='md:text-xl text-lg font-normal'
+					>Clique e Peça no WhatsApp</span
+				>
 			</a>
+			<ScrollButton />
 		</main>
 	</div>
 
 	<aside class='flex flex-col items-center justify-center mb-8'>
 		<article
-			class='flex gap-4 mt-8 flex-wrap justify-center sm:flex-row flex-col'
+			class='w-full flex gap-6 mt-8 flex-wrap justify-center items-center sm:flex-row flex-col'
 		>
 			<Post1 />
 			<Post2 />
@@ -93,7 +108,7 @@ import Post3 from '../components/post3.astro'
 	</aside>
 
 	<footer
-		class='flex flex-col gap-4 justify-center items-center text-sm text-gray-300 text-center w-[700px] mx-auto px-2 mb-8'
+		class='flex flex-col gap-4 justify-center items-center text-sm text-gray-300 text-center w-[700px] mx-auto px-2 mt-48 md:mb-8 mb-24'
 	>
 		<div class='flex sm:flex-row flex-col gap-5 items-center justify-center'>
 			<a
