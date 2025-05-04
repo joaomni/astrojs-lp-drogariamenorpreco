@@ -5,45 +5,43 @@
 	href='https://api.whatsapp.com/send?phone=556133518138&text=Ol%C3%A1!%20Vi%20seu%20an%C3%BAncio%20e%20gostaria%20de%20fazer%20um%20pedido.'
 	target='_blank'
 >
-	<span class='md:text-xl text-lg font-normal'>Clique e Peça no WhatsApp</span>
+	<span class='text-xl font-bold'>Clique e Peça no WhatsApp</span>
 </a>
 
 <script>
-	if (window.matchMedia('(max-width: 768px)').matches) {
-		// Executa apenas em telas de até 768px
+	// Executa apenas em telas de até 768px
+	window.addEventListener('scroll', () => {
+		const scrollButton = document.getElementById(
+			'scrollButton'
+		) as HTMLElement | null
+		const fixedButton = document.getElementById(
+			'btnWhatsapp'
+		) as HTMLElement | null
+
+		let lastScrollTop = 0
+
 		window.addEventListener('scroll', () => {
-			const scrollButton = document.getElementById(
-				'scrollButton'
-			) as HTMLElement | null
-			const fixedButton = document.getElementById(
-				'btnWhatsapp'
-			) as HTMLElement | null
+			// Verificar se os elementos estão presentes
+			if (!scrollButton || !fixedButton) return // Se algum dos elementos for null, sai da função
 
-			let lastScrollTop = 0
+			const currentScroll = window.scrollY
 
-			window.addEventListener('scroll', () => {
-				// Verificar se os elementos estão presentes
-				if (!scrollButton || !fixedButton) return // Se algum dos elementos for null, sai da função
+			// Se rolou mais de 100px para baixo, esconder o botão
+			if (currentScroll > 600) {
+				scrollButton.style.opacity = '0' // Fica invisível
+			} else {
+				scrollButton.style.opacity = '1' // Fica visível
+			}
 
-				const currentScroll = window.scrollY
+			// Mostrar o botão fixo quando o usuário rolar mais
+			if (currentScroll > 600) {
+				fixedButton.style.display = 'flex'
+			} else {
+				fixedButton.style.display = 'none'
+			}
 
-				// Se rolou mais de 100px para baixo, esconder o botão
-				if (currentScroll > 600) {
-					scrollButton.style.opacity = '0' // Fica invisível
-				} else {
-					scrollButton.style.opacity = '1' // Fica visível
-				}
-
-				// Mostrar o botão fixo quando o usuário rolar mais
-				if (currentScroll > 600) {
-					fixedButton.style.display = 'flex'
-				} else {
-					fixedButton.style.display = 'none'
-				}
-
-				// Guardar a posição da rolagem
-				lastScrollTop = currentScroll <= 0 ? 0 : currentScroll
-			})
+			// Guardar a posição da rolagem
+			lastScrollTop = currentScroll <= 0 ? 0 : currentScroll
 		})
-	}
+	})
 </script>
