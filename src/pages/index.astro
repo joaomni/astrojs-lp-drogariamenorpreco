@@ -9,12 +9,13 @@ import Post2 from '../components/post2.astro'
 import Post3 from '../components/post3.astro'
 import TimerCountdown from '../components/TimerCountdown.astro'
 import ScrollButton from '../components/ScrollButton.astro'
+import ScrollDown from '../components/ScrollDown.astro'
 ---
 
 <Layout title='Drogaria Menor Preço - Preço Baixo Todo Dia!'>
 	<TimerCountdown />
 
-	<div class='w-[580px] my-0 mx-auto text-center pt-16 pb-8 px-6'>
+	<div class='w-[580px] my-0 mx-auto text-center pt-16 pb-10 px-6 relative'>
 		<header class='flex flex-col items-center gap-6'>
 			<img
 				class='bg-white mb-4 rounded-full w-[96px] h-[96px] object-contain p-1'
@@ -85,6 +86,8 @@ import ScrollButton from '../components/ScrollButton.astro'
 			</a>
 			<ScrollButton />
 		</main>
+
+		<ScrollDown />
 	</div>
 
 	<aside class='flex flex-col items-center justify-center mb-8'>
